@@ -23,7 +23,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          submodules: recursive  # 确保您的主题（kong-htop）被正确克隆
+          # 关键修改 1: 使用 GITHUB_TOKEN 提供权限
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 关键修改 2: 确保 submodules 始终被拉取
+          submodules: true 
           fetch-depth: 0
 
       - name: Setup Hugo
