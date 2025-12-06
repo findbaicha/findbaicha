@@ -1,4 +1,4 @@
-baseURL = 'https://findbaicha.github.io/'
+baseURL = 'https://findbaicha.github.io/findbaicha/'
 languageCode = 'en-us'
 title = 'My CTF Writeups'
 theme = 'kong-htop'  # <-- 确保这一行存在且正确
