@@ -28,7 +28,7 @@ jobs:
 
       # 【核心新增步骤】：直接使用 git clone 拉取主题
       - name: Clone Theme
-        run: git clone git@github.com:kong-htop/kong-htop.git themes/kong-htop
+        run: git clone https://github.com/yezihack/kong-htop.git themes/kong-htop
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
