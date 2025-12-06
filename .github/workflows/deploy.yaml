@@ -20,26 +20,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout Code (No Submodules)
         uses: actions/checkout@v4
         with:
-          # 关键修改 1: 使用 GITHUB_TOKEN 提供权限
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # 关键修改 2: 确保 submodules 始终被拉取
-          submodules: true 
+          # 移除 submodules: true/recursive 和 token，只检出主仓库
           fetch-depth: 0
 
+      # 新增步骤：手动执行子模块更新
+      - name: Install Theme Submodules
+        run: git submodule update --init --recursive
+        
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          # 使用最新的 Extended 版本，支持 Sass/SCSS
           hugo-version: 'latest'
           extended: true
 
       - name: Build Hugo Site
-        # 执行 Hugo 构建命令，生成静态文件到 public 目录
         run: hugo --minify
-
+      
+      # ... (其余步骤保持不变)
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
