@@ -3,7 +3,7 @@ name: Deploy Hugo Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # 监听 main 分支的推送事件。如果您的分支名叫 master，请更改此处。
+      - master  # 监听 main 分支的推送事件。如果您的分支名叫 master，请更改此处。
   # 也可以手动在 GitHub Actions 页面触发部署
   workflow_dispatch:
 
