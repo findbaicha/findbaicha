@@ -1,0 +1,26 @@
+backend:
+  # 使用 Git Gateway 通过 Netlify 提供的服务连接 GitHub
+  # 尽管我们不使用 Netlify 部署，但这是最简单的身份验证方式。
+  name: github
+  repo: findbaicha/findbaicha # ⚠️ 您的仓库名
+  branch: master # ⚠️ 您的分支名
+
+# 站点主题，影响后台样式
+publish_mode: editorial_workflow
+media_folder: "static/uploads" # 媒体文件上传到的文件夹 (相对于仓库根目录)
+public_folder: "/uploads" # 媒体文件的公共路径 (相对于网站根目录)
+
+# 集合 (Collections) 定义：定义您要管理的内容类型
+collections:
+  - name: "posts" # 集合名称，用于后台左侧导航
+    label: "CTF 文章" # 后台显示名称
+    folder: "content/posts" # 您的文章存放的文件夹
+    create: true # 允许新建文章
+    slug: "{{slug}}" # URL 别名格式
+    fields: # 文章的字段 (Front Matter) 定义
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "创建日期", name: "date", widget: "datetime", default: "2025-12-01T00:00:00+08:00"}
+      - {label: "是否为草稿", name: "draft", widget: "boolean", default: true}
+      - {label: "标签", name: "tags", widget: "list", required: false}
+      - {label: "分类", name: "categories", widget: "list", default: ["writeup"]}
+      - {label: "文章正文", name: "body", widget: "markdown"}
