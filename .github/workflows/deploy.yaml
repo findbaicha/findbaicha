@@ -23,11 +23,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          # 确保不拉取子模块，避免冲突
-          fetch-depth: 0
+          # 清理掉所有关于子模块的配置
+          fetch-depth: 0 
 
-      # 【核心新增步骤】：直接使用 git clone 拉取主题
+      # 【核心修复】：使用正确的 HTTPS 地址直接克隆主题
       - name: Clone Theme
+        # ⚠️ 修正后的主题地址：https://github.com/yezihack/kong-htop.git
         run: git clone https://github.com/yezihack/kong-htop.git themes/kong-htop
 
       - name: Setup Hugo
@@ -39,12 +40,12 @@ jobs:
       - name: Build Hugo Site
         run: hugo --minify
         
-      # ... (其余步骤，如 Upload Artifact 和 Deploy 保持不变)
-
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public # 上传 Hugo 生成的静态文件目录
+          path: ./public
+
+      # ... (其余步骤保持不变)
 
   deploy:
     environment:
