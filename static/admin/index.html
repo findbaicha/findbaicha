@@ -1,1 +1,23 @@
-1111
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内容管理后台 - CTF Writeups</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <script>
+    // 启动 CMS
+    CMS.init();
+    
+    // 配置 GitHub 身份验证，这是登录所必需的
+    CMS.registerBackend('github', {
+      name: 'github',
+      repo: 'findbaicha/findbaicha', // 您的仓库
+      branch: 'master', // 您的分支
+      auth_scope: 'repo' // 请求完整的仓库权限
+    });
+  </script>
+</body>
+</html>
